@@ -15,13 +15,38 @@ class ShardingSphereApplicationTests {
     @Autowired
     private CourseMapper courseMapper;
 
+
+    //==============水平分库分表==============
+    @Test
+    void addCourseDB() {
+//        for (int i = 0; i < 10; i++) {
+            Course course = new Course();
+            course.setCname("java");
+            course.setUserId(1010L);
+            course.setCstatus("normal");
+            courseMapper.insert(course);
+//        }
+
+    }
+
+
+    @Test
+    void queryCourseDB() {
+        QueryWrapper<Course> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("cid", 594907205359108097L);
+        queryWrapper.eq("user_id", 1010L);
+        Course course = courseMapper.selectOne(queryWrapper);
+        System.out.printf("=========="+course+"------------");
+    }
+
+    //==============水平分表==============
     @Test
     void addCourse() {
         for (int i = 0; i < 10; i++) {
             Course course = new Course();
             course.setCname("java"+i);
             course.setUserId(1010L);
-            course.setCstatus("noral");
+            course.setCstatus("normal");
             courseMapper.insert(course);
         }
 

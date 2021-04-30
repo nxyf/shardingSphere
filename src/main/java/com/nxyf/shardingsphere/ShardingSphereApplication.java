@@ -21,6 +21,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * shardingJdbc:轻量级的Java框架，增强版的jdbc驱动  做的事情并不是分库分表，操作分库分表的后数据源
  *    主要功能：数据分片和读写分离
  *    主要目的：简化分库分表的数据操作
+ *
+ * 规则约定：
+ *     数据库规则：user_id为偶数存到edu_db_1库，user_id为奇数存到edu_db_2
+ *     表规则：cid为偶数的存在course_1表，cid为奇数的存到course_2表
  */
 @SpringBootApplication
 @MapperScan("com.nxyf.shardingsphere.mapper")
