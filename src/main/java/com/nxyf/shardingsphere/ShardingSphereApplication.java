@@ -25,6 +25,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 规则约定：
  *     数据库规则：user_id为偶数存到edu_db_1库，user_id为奇数存到edu_db_2
  *     表规则：cid为偶数的存在course_1表，cid为奇数的存到course_2表
+ *
+ * 公共表：存储固定数据的表，表数据很少发生变化，查询时经常进行关联；在每个数据库中创建出相同结构的公共表
  */
 @SpringBootApplication
 @MapperScan("com.nxyf.shardingsphere.mapper")

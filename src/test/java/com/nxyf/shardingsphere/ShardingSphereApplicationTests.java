@@ -2,7 +2,11 @@ package com.nxyf.shardingsphere;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.nxyf.shardingsphere.entity.Course;
+import com.nxyf.shardingsphere.entity.Udict;
+import com.nxyf.shardingsphere.entity.User;
 import com.nxyf.shardingsphere.mapper.CourseMapper;
+import com.nxyf.shardingsphere.mapper.DictMapper;
+import com.nxyf.shardingsphere.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,18 +19,56 @@ class ShardingSphereApplicationTests {
     @Autowired
     private CourseMapper courseMapper;
 
+    @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
+    private DictMapper dictMapper;
+
+    //==============公共表==============
+    @Test
+    void addDictDB() {
+        Udict udict = new Udict();
+        udict.setUstatus("1");
+        udict.setValue("启用");
+        dictMapper.insert(udict);
+    }
+
+
+    @Test
+    void delDictDB() {
+        QueryWrapper<Udict> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("dict_id", 596452048933748737L);
+        dictMapper.delete(queryWrapper);
+    }
+
+    //==============垂直分库分表==============
+    @Test
+    void addUserDB() {
+        User user = new User();
+        user.setUsername("java");
+        user.setUstatus("normal");
+        userMapper.insert(user);
+
+    }
+
+
+    @Test
+    void queryUserDB() {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id", 596444867685515265L);
+        User user = userMapper.selectOne(queryWrapper);
+        System.out.printf("=========="+user+"------------");
+    }
 
     //==============水平分库分表==============
     @Test
     void addCourseDB() {
-//        for (int i = 0; i < 10; i++) {
             Course course = new Course();
             course.setCname("java");
             course.setUserId(1010L);
             course.setCstatus("normal");
             courseMapper.insert(course);
-//        }
-
     }
 
 
