@@ -81,6 +81,13 @@ class ShardingSphereApplicationTests {
         System.out.printf("=========="+course+"------------");
     }
 
+    @Test
+    void queryCourseByDictIdDB() {
+
+        Course course = courseMapper.selectCourseByDictId(594907205359108097L);
+        System.out.printf("=========="+course+"------------");
+    }
+
     //==============水平分表==============
     @Test
     void addCourse() {

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nxyf.shardingsphere.mapper.CourseMapper">
+
+    <select id="selectCourseByDictId" resultType="com.nxyf.shardingsphere.entity.Course">
+    select * from course_1 c left join t_udict t on c.cstatus = t.ustatus where c.cid=#{cid}
+    </select>
+</mapper>

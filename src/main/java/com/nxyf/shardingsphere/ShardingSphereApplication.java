@@ -39,6 +39,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * mysql配置读写分离
  *    修改端口号、文件及数据目录
  *    binlog配置
+ *
+ * sharding-jdbc与sharding-proxy：sharding-jdbc是框架，sharding-proxy是一个独立的应用，需下载安装
+ *    sharding-proxy的安装包，需要给lib包下面的所有文件重命名，添加.jar，不然启动报错class文件找不到
+ *    4.0.1版本
  */
 @SpringBootApplication
 @MapperScan("com.nxyf.shardingsphere.mapper")
